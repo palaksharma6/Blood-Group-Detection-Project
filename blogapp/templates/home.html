@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <style>
+        /* Full height and reset margin */
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            overflow: hidden;
+        }
+
+        /* Blurred Background Image */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('{{ url_for('static', filename='img4.jpg') }}') no-repeat center center;
+            background-size: cover;
+            filter: blur(10px);
+            z-index: -1;
+        }
+
+        /* Glassmorphism Content Box */
+        .container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 40px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+            color: #fff;
+            animation: slideIn 1s ease-out;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            color: #f1f1f1;
+        }
+
+        .links {
+            text-align: center;
+        }
+
+        a {
+            display: inline-block;
+            margin: 12px 8px;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 30px;
+            background: linear-gradient(to right, #007bff, #00c6ff);
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        a:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(0, 198, 255, 0.6);
+        }
+
+        /* Entrance Animation */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -60%);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .container {
+                padding: 25px;
+                width: 90%;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Blurred Background -->
+    <div class="background"></div>
+
+    <!-- Stylish Glass Container -->
+    <div class="container">
+        <h1>Welcome, {{ session['user'] }}</h1>
+        <div class="links">
+            <a href="{{ url_for('predict') }}">Predict Blood Group</a>
+            <a href="{{ url_for('about') }}">About</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </div>
+    </div>
+
+</body>
+</html>

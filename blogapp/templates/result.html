@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prediction Result</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Roboto', sans-serif;
+            overflow-x: hidden;
+            background-color: #000;
+        }
+
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('{{ image_url }}') no-repeat center center;
+            background-size: cover;
+            filter: blur(12px) brightness(0.4);
+            z-index: -1;
+        }
+
+        .container {
+            position: relative;
+            max-width: 600px;
+            margin: 60px auto;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            backdrop-filter: blur(15px);
+            color: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .result {
+            text-align: center;
+            font-size: 1.2rem;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        img.uploaded-image {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            border-radius: 12px;
+            margin-top: 20px;
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
+        }
+
+        .features {
+            margin-top: 25px;
+        }
+
+        .features h3 {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .features ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .features li {
+            background: rgba(255, 255, 255, 0.1);
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .button-group {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .button-group a {
+            margin: 10px;
+            display: inline-block;
+            padding: 12px 20px;
+            background: #00bcd4;
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .button-group a:hover {
+            background: #008c9e;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+
+    <div class="container">
+        <h2>🧬 Blood Group Prediction</h2>
+
+        <div class="result">
+            Predicted Blood Group: <strong>{{ predicted_class }}</strong><br>
+            Confidence: <strong>{{ confidence }}%</strong>
+        </div>
+
+        <img src="{{ image_url }}" class="uploaded-image" alt="Uploaded Fingerprint">
+
+        {% if features %}
+        <div class="features">
+            <h3>🛠 Handcrafted Features</h3>
+            <ul>
+                {% for k, v in features.items() %}
+                <li><strong>{{ k }}:</strong> {{ v }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        <div class="button-group">
+            <a href="{{ url_for('predict') }}">🔁 Predict Another</a>
+            <a href="{{ url_for('home') }}">🏠 Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>

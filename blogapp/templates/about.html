@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About Us</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Background image (replace with your link) */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://png.pngtree.com/png-vector/20220616/ourmid/pngtree-abstract-ink-splatter-or-blood-stain-texture-background-png-image_5082584.png') no-repeat center center;
+            background-size: cover;
+            filter: blur(12px);
+            z-index: -1;
+        }
+
+        .about-container {
+            text-align: center;
+            padding: 60px 20px;
+            color: #004d40;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .about-container h1 {
+            margin-bottom: 40px;
+            font-size: 3em;
+        }
+
+        .cards {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            width: 280px;
+            box-shadow: 0px 10px 25px rgba(0,0,0,0.2);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            animation: slideUp 1s ease forwards;
+            opacity: 0;
+        }
+
+        .card img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            transition: transform 0.4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 20px 30px rgba(0,0,0,0.3);
+        }
+
+        .card:hover img {
+            transform: scale(1.1);
+        }
+
+        .card h2 {
+            margin: 10px 0 5px;
+            color: #00695c;
+        }
+
+        .card p {
+            margin: 0;
+            color: #333;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Delay animation per card */
+        .card:nth-child(1) { animation-delay: 0.2s; }
+        .card:nth-child(2) { animation-delay: 0.4s; }
+        .card:nth-child(3) { animation-delay: 0.6s; }
+
+        @media screen and (max-width: 768px) {
+            .cards {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+
+    <div class="about-container">
+        <h1>Meet the Developers</h1>
+        <div class="cards">
+            <div class="cards">
+    <div class="card">
+        <img src="{{ url_for('static', filename='Devesh.jpg') }}" alt="Devesh">
+        <h2>Devesh</h2>
+        <p>Final Year IT Student</p>
+    </div>
+    <div class="card">
+        <img src="{{ url_for('static', filename='Ananya_Dubey.jpg') }}" alt="Ananya Dubey">
+        <h2>Ananya Dubey</h2>
+        <p>Final Year IT Student</p>
+    </div>
+    <div class="card">
+        <img src="{{ url_for('static', filename='Palak.jpg') }}" alt="Palak Sharma">
+        <h2>Palak Sharma</h2>
+        <p>Final Year IT Student</p>
+    </div>
+</div>
+    </div>
+</body>
+</html>
